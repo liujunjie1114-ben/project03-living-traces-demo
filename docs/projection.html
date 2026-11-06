@@ -1,0 +1,7 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="icon" href="data:,"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Project 03 — Projection Preview</title><link rel="stylesheet" href="style.css"></head><body class="projector"><canvas id="field" aria-label="独立节奏投影窗口"></canvas><span id="projection-status">WAITING FOR CONTROL / 此窗口不播放声音</span><button class="projector-exit" id="fullscreen">全屏 ↗</button><script type="module">
+import {RhythmField} from './visual.js';
+const field=new RhythmField(document.getElementById('field')),channel=new BroadcastChannel('project03-github-projection');let state=null,last=0;
+channel.onmessage=e=>{state=e.data;last=performance.now();};
+document.getElementById('fullscreen').onclick=()=>document.documentElement.requestFullscreen().catch(()=>{});
+function frame(){const fresh=state&&performance.now()-last<700;field.draw(state?.plan||null,fresh?state.elapsed_ms:0,!!fresh&&state.running);document.getElementById('projection-status').textContent=fresh?`RHYTHM-DRIVEN / ${state.running?'RUNNING':'IDLE'} / SILENT DISPLAY`:'WAITING FOR CONTROL / 此窗口不播放声音';requestAnimationFrame(frame);}frame();
+</script></body></html>

@@ -1,0 +1,12 @@
+__pycache__/
+node_modules/
+.env
+.env.*
+data/
+evidence/
+archive/
+*.log
+*.toe
+*.tmp
+.DS_Store
+Thumbs.db

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><link rel="icon" href="data:,"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Project 03 — Phase 01 Studio</title><link rel="stylesheet" href="style.css"><script type="module" src="share-app.js"></script></head>
+<body>
+<header class="masthead"><a href="#" class="project-mark">PROJECT <b>03</b></a><div class="work-title">AFTER EXPRESSION <span>/</span> LIVING TRACES<small>交互装置 · 教师在线演示</small></div><a class="preview-link" href="index.html">光场预览 ↗</a><a class="archive-link" href="#archive">EVENT ARCHIVE <span>↗</span></a></header>
+<main class="studio">
+ <aside class="control">
+  <div class="section-index"><span>01 / EXPRESSION</span><span class="blue">ONLINE DEMO</span></div>
+  <h1>LEAVE A<br><em>RHYTHM.</em></h1><p class="intro">留下一句话，让它成为一段可以听见、看见和回看的节奏。</p>
+  <form id="input-form">
+   <label for="original">原句 <span>保留表达，不自动转写</span></label>
+   <textarea id="original" maxlength="500" rows="2">HELLO</textarea>
+   <label for="encoding">用于编码的文本 <span>A–Z / 0–9 / 空格</span></label>
+   <input id="encoding" type="text" maxlength="80" value="HELLO" autocomplete="off" spellcheck="false" aria-describedby="input-error">
+   <div class="parameter-row"><label for="unit">点的时间单位</label><select id="unit"><option value="80">80 ms</option><option value="100">100 ms</option><option value="120" selected>120 ms</option><option value="160">160 ms</option><option value="200">200 ms</option><option value="300">300 ms</option></select></div>
+   <p id="input-error" class="error" role="alert"></p>
+   <div class="confirm-preview"><span>确认后将使用</span><strong id="normalized">HELLO</strong><small id="normalization-note">小写转为大写，首尾与连续半角空格会规范化。</small></div>
+   <button id="confirm" class="primary" type="submit">确认这段编码文本 <span>↗</span></button>
+  </form>
+  <div class="execution-controls">
+   <label for="executor">声音执行方式</label><select id="executor"><option value="browser">浏览器声音演示</option><option value="silent">静音画面演示</option></select>
+   <div class="button-row"><button id="start" class="primary" disabled>开始呈现 <span>▶</span></button><button id="stop" class="stop" disabled>停止 ■</button></div>
+  </div>
+  <figure class="device-reference"><img src="assets/device-reference.png" alt="原装置概念：中央盆栽、半透明波纹层片、细杆、圆形灯节点和圆形底座"><figcaption><span>THE PHYSICAL ENCOUNTER</span><small>装置形态参照 · 概念图</small></figcaption></figure>
+ </aside>
+ <section class="workspace" aria-label="声音与点线呈现">
+  <div class="section-index"><span>02 / DUAL OUTPUT</span><span id="run-state" role="status">WAITING / 等待确认</span></div>
+  <div class="stage-heading"><h2>FROM EXPRESSION<br>TO <em>A LUMINOUS FIELD.</em></h2><p>同一份摩斯事件表<br>声音 / 光簇 / 流动</p></div>
+  <div class="projection-stage" id="projection-stage"><canvas id="field" aria-label="黑色背景上的蓝白粒子与景深光斑"></canvas><div class="stage-label">MORSE-DRIVEN LIGHT <span>冷白 · 电蓝 · 景深光斑</span></div><div class="stage-bottom"><span id="tone-state">SIGNAL / READY</span><button id="open-projection" class="text-button">独立投影窗口 ↗</button></div></div>
+  <div class="channel-strip"><div><span>01 / SOUND</span><strong id="audio-state">尚未开始</strong><small>600 Hz · 摩斯节奏音</small></div><div><span>02 / PROJECTION</span><strong>蓝白粒子光场</strong><small>随摩斯节奏聚散 · rhythm-driven</small></div><div><span>03 / OBSERVATION</span><strong>植物观测未连接</strong><small>本阶段保留接口</small></div></div>
+  <section class="timing-section"><div class="timing-title"><h3>ONE SCORE. TWO OUTPUTS.</h3><span><b id="elapsed">0.00</b> / <span id="duration">5.88</span> s</span></div><div id="timeline" class="timeline" aria-label="精确摩斯点划时间条"></div><div class="plan-details"><code id="morse">.... / . / .-.. / .-.. / ---</code><span id="plan-metrics">31 段 / 请求发声 3.12 s</span></div><div class="event-line"><span id="event-id">EVENT / 尚未确认</span><button id="export-plan" class="text-button" disabled>导出时间表 JSON ↓</button></div></section>
+  <div class="notice" id="notice" role="status">线上版本使用浏览器声音与粒子画面。你的输入与记录只保存在当前浏览器，可导出 JSON。</div>
+  <div class="connection-bar"><span id="storage-state">BROWSER LOCAL / 仅当前浏览器保存</span><a class="text-button" href="about.html">项目说明 ↗</a><span>TD / 现场版本另行运行</span></div>
+ </section>
+</main>
+<section id="archive" class="archive-section"><div class="archive-heading"><div><span class="eyebrow">03 / BROWSER EVENT ARCHIVE</span><h2>WHAT REMAINS.</h2></div><p>保存表达、时间表与实际运行状态。<br>每次重新呈现，都建立一个新事件。</p><button id="export-all" class="outline">导出全部档案 ↓</button></div><div id="archive-list" class="archive-list"><p class="empty">还没有事件。先确认一段编码文本。</p></div></section>
+<footer><span>PROJECT 03 — PHASE 01 / ENGINEERING DEMO</span><span>保留表达的过程，也保留系统的边界。</span><span>BROWSER LOCAL RECORDS · NO EVENT UPLOAD</span></footer>
+<dialog id="record-dialog"><div class="dialog-head"><h2>EVENT RECORD</h2><button id="close-dialog" aria-label="关闭档案">✕</button></div><p id="record-summary"></p><pre id="record-json"></pre><div class="button-row"><button id="replay-record" class="primary">载入文本，建立新事件 ↗</button><button id="export-record" class="outline">导出此档案 ↓</button></div></dialog>
+</body></html>
